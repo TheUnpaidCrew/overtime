@@ -2,17 +2,20 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <div class="mcenter mpadding">
-        {{> clock}}
+        <div>
+          {{> loginButtons}}
+          <div class="mpadding">
+            {{> clock}}
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6" align="center">
         <h2 align="center"> Powerups </h2>
         {{> powerup}}
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" align="center">
         {{> userdisplay}}
       </div>
     </div>

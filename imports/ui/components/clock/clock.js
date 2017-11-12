@@ -1,15 +1,6 @@
 import './clock.html';
-//
-// Template.clock.onCreated(function helloOnCreated() {
-//   // counter starts at 0
-//   this.counter = new ReactiveVar(0);
-// });
-//
-// Template.clock.helpers({
-//   counter() {
-//     return Template.instance().counter.get();
-//   },
-// });
+import { Clicks } from '/imports/api/clicks/clicks.js';
+
 //
 // Template.clock.events({
 //   'click button'(event, instance) {

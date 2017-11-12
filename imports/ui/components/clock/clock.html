@@ -1,4 +1,7 @@
 <template name="clock">
+  <div class="cash">
+    <h1 id="cash">Cash: $0</h1>
+  </div>
   <div class="clock simple mcenter" onclick="clickClock();">
     <div class="hours-container">
       <div class="hours"></div>
@@ -10,12 +13,17 @@
       <div class="seconds"></div>
     </div>
   </div>
+  <div class="cashflow">
+    <h2 id="cashflow">Cashflow: $1/min</h2>
+  </div>
   <script type="text/javascript">
   (function(){
     var date;
     var seconds;
     var minutes;
     var hours;
+    var cash;
+    var multiplier;
 
     initLocalClocks();
     moveSecondHands();
@@ -26,6 +34,8 @@
   var seconds;
   var minutes;
   var hours;
+  var cash;
+  var multiplier;
 
   function initLocalClocks() {
     // Get the local time using JS
@@ -38,7 +48,7 @@
     var hands = [
       {
         hand: 'hours',
-        angle: (hours * 30) + (minutes / 2)
+        angle: (hours * 30)
       },
       {
         hand: 'minutes',
@@ -65,6 +75,8 @@
 
   function setUpMinuteHands() {
     // Find out how far into the minute we are
+    multiplier = 1;
+    document.getElementById("playergif").src = "assets/Promotion-2.gif";
     var containers = document.querySelectorAll('.minutes-container');
     var secondAngle = containers[0].getAttribute("data-second-angle");
     if (secondAngle > 0) {
@@ -76,9 +88,6 @@
     }
   }
 
-  /*
-  * Do the first minute's rotation
-  */
   function moveMinuteHands(containers) {
     clickClock();
     // Then continue with a 60 second interval
@@ -114,15 +123,37 @@
       containers[i].style.transform = 'rotateZ('+ containers[i].angle +'deg)';
     }
 
-    minutes += 1;
+    minutes += multiplier;
+    updatePlayermodel(minutes);
+    document.getElementById("cash").innerHTML = "Cash: $" + minutes;
+    document.getElementById("cashflow").innerHTML = "Cashflow: $" + multiplier + "/min";
 
     var containers2 = document.querySelectorAll('.hours-container');
     for (var i = 0; i < containers2.length; i++) {
-      if (minutes % 60 === 0) {
-        containers2[i].angle += 6;
+      if (containers2[i].angle === undefined) {
+        containers2[i].angle = 30;
+      } else if (minutes % 60 === 0) {
+        containers2[i].angle += 30;
       }
       containers2[i].style.webkitTransform = 'rotateZ('+ containers2[i].angle +'deg)';
       containers2[i].style.transform = 'rotateZ('+ containers2[i].angle +'deg)';
+    }
+  }
+
+  var lastplayermodel = "assets/Promotion-2.gif";
+
+  function updatePlayermodel(money){
+    var newplayermodel = "assets/Promotion-2.gif";
+    if (money >= 100) { newplayermodel = "assets/Promotion-1.gif"; }
+    if (money >= 1000) { newplayermodel = "assets/Promotion0.gif"; }
+    if (money >= 10000) { newplayermodel = "assets/Promotion1.gif"; }
+    if (money >= 100000) { newplayermodel = "assets/Promotion2.gif"; }
+    if (money >= 1000000) { newplayermodel = "assets/Promotion3.gif"; }
+    if (money >= 10000000) { newplayermodel = "assets/Promotion4.gif"; }
+
+    if (lastplayermodel !== newplayermodel) {
+      lastplayermodel = newplayermodel;
+      document.getElementById("playergif").src = newplayermodel;
     }
   }
   </script>
