@@ -1,27 +1,27 @@
 <template name="clock">
   <article class="clock simple" onclick="clickClock();">
-		<div class="hours-container">
-			<div class="hours"></div>
-		</div>
-		<div class="minutes-container">
-			<div class="minutes"></div>
-		</div>
-		<div class="seconds-container">
-			<div class="seconds"></div>
-		</div>
-	</article>
-	<script type="text/javascript">
+    <div class="hours-container">
+      <div class="hours"></div>
+    </div>
+    <div class="minutes-container">
+      <div class="minutes"></div>
+    </div>
+    <div class="seconds-container">
+      <div class="seconds"></div>
+    </div>
+  </article>
+  <script type="text/javascript">
   (function(){
-  	var date;
-  	var seconds;
-  	var minutes;
-  	var hours;
+    var date;
+    var seconds;
+    var minutes;
+    var hours;
 
-  	initLocalClocks();
-  	moveSecondHands();
-      setUpMinuteHands();
+    initLocalClocks();
+    moveSecondHands();
+    setUpMinuteHands();
   })();
-
+  
   var date;
   var seconds;
   var minutes;
@@ -53,12 +53,12 @@
     for (var j = 0; j < hands.length; j++) {
       var elements = document.querySelectorAll('.' + hands[j].hand);
       for (var k = 0; k < elements.length; k++) {
-          elements[k].style.webkitTransform = 'rotateZ('+ hands[j].angle +'deg)';
-          elements[k].style.transform = 'rotateZ('+ hands[j].angle +'deg)';
-          // If this is a minute hand, note the seconds position (to calculate minute position later)
-          if (hands[j].hand === 'minutes') {
-            elements[k].parentNode.setAttribute('data-second-angle', hands[j + 1].angle);
-          }
+        elements[k].style.webkitTransform = 'rotateZ('+ hands[j].angle +'deg)';
+        elements[k].style.transform = 'rotateZ('+ hands[j].angle +'deg)';
+        // If this is a minute hand, note the seconds position (to calculate minute position later)
+        if (hands[j].hand === 'minutes') {
+          elements[k].parentNode.setAttribute('data-second-angle', hands[j + 1].angle);
+        }
       }
     }
   }
@@ -77,8 +77,8 @@
   }
 
   /*
-   * Do the first minute's rotation
-   */
+  * Do the first minute's rotation
+  */
   function moveMinuteHands(containers) {
     clickClock();
     // Then continue with a 60 second interval
@@ -106,9 +106,9 @@
     var containers = document.querySelectorAll('.minutes-container');
     for (var i = 0; i < containers.length; i++) {
       if (containers[i].angle === undefined) {
-  	  containers[i].angle = 6;
+        containers[i].angle = 6;
       } else {
-  	  containers[i].angle += 6;
+        containers[i].angle += 6;
       }
       containers[i].style.webkitTransform = 'rotateZ('+ containers[i].angle +'deg)';
       containers[i].style.transform = 'rotateZ('+ containers[i].angle +'deg)';
@@ -119,7 +119,7 @@
     var containers2 = document.querySelectorAll('.hours-container');
     for (var i = 0; i < containers2.length; i++) {
       if (minutes % 60 === 0) {
-  	  containers2[i].angle += 6;
+        containers2[i].angle += 6;
       }
       containers2[i].style.webkitTransform = 'rotateZ('+ containers2[i].angle +'deg)';
       containers2[i].style.transform = 'rotateZ('+ containers2[i].angle +'deg)';
