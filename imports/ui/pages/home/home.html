@@ -1,5 +1,17 @@
 <template name="App_home">
-  {{> loginButtons }}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        {{> clock}}
+      </div>
+      <div class="col-md-4">
+        <h2 align="center"> Powerups </h2>
+      </div>
+      <div class="col-md-2">
+        {{> loginButtons }}
+      </div>
+    </div>
+  </div>
   <br>
   {{> hello}}
   {{> info}}
