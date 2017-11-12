@@ -17,6 +17,7 @@
     <h2 id="cashflow">Cashflow: $1/min</h2>
   </div>
   <script type="text/javascript">
+
   (function(){
     var date;
     var seconds;
@@ -125,6 +126,7 @@
 
     minutes += multiplier;
     updatePlayermodel(minutes);
+    powerup(minutes);
     document.getElementById("cash").innerHTML = "Cash: $" + minutes;
     document.getElementById("cashflow").innerHTML = "Cashflow: $" + multiplier + "/min";
 
@@ -154,6 +156,25 @@
     if (lastplayermodel !== newplayermodel) {
       lastplayermodel = newplayermodel;
       document.getElementById("playergif").src = newplayermodel;
+    }
+  }
+
+  function powerup(money) {
+    if ((money >= 50) && !document.getElementById("energy").classList.value.includes("good")) {
+      document.getElementById("energy").classList.remove('gray');
+      document.getElementById("energy").classList.add('half-gray');
+    }
+    if ((money >= 150) && !document.getElementById("keyboard").classList.value.includes("good")) {
+      document.getElementById("keyboard").classList.remove('gray');
+      document.getElementById("keyboard").classList.add('half-gray');
+    }
+  }
+
+  function activatePower(power) {
+    if (document.getElementById(power).classList.contains("half-gray")) {
+      multiplier *= 2;
+      document.getElementById(power).classList.add("good");
+      document.getElementById(power).classList.remove("half-gray");
     }
   }
   </script>

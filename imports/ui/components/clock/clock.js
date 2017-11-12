@@ -1,4 +1,5 @@
 import './clock.html';
+import '../powerup/powerup.html';
 import { Clicks } from '/imports/api/clicks/clicks.js';
 
 //
