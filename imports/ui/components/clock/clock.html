@@ -1,5 +1,5 @@
 <template name="clock">
-  <article class="clock simple" onclick="clickClock();">
+  <div class="clock simple mcenter" onclick="clickClock();">
     <div class="hours-container">
       <div class="hours"></div>
     </div>
@@ -9,7 +9,7 @@
     <div class="seconds-container">
       <div class="seconds"></div>
     </div>
-  </article>
+  </div>
   <script type="text/javascript">
   (function(){
     var date;
@@ -21,7 +21,7 @@
     moveSecondHands();
     setUpMinuteHands();
   })();
-  
+
   var date;
   var seconds;
   var minutes;
